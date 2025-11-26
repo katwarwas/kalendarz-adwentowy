@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <title>Kalendarz Adwentowy – Podstawa</title>
+    <style>
+      body {
+        background: #730000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial;
+      }
+
+      .card {
+        width: 80vw;
+        height: 80vw;
+        max-width: 600px; /* maksymalna szerokość */
+        max-height: 600px; /* maksymalna wysokość */
+        min-width: 250px; /* minimalna szerokość */
+        min-height: 250px;
+        perspective: 1000px;
+        cursor: pointer;
+      }
+
+      .inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .flip {
+        transform: rotateY(180deg);
+      }
+
+      .side {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+      }
+      .day-number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 140px;
+        color: rgb(251, 220, 133);
+        font-weight: 900;
+        font-family: "Cedarville Cursive", cursive;
+
+        pointer-events: none;
+      }
+
+      .back {
+        transform: rotateY(180deg);
+      }
+      .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        pointer-events: none; /* nie blokuje kliknięć */
+        user-select: none;
+        z-index: 99999; /* nad stroną, ale jej nie rusza */
+        animation-name: snowfall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes snowfall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card" onclick="flipCard()">
+      <div class="inner" id="photoCard">
+        <div class="side front" id="front">
+          <div class="day-number" id="dayNumber"></div>
+        </div>
+        <div class="side back" id="back"></div>
+      </div>
+    </div>
+
+    <script>
+      // === WYBIERAMY FOLDER Z POZIOMEM ===
+      const folder = "rozszerzenie"
+
+      // === USTALAMY DZIEŃ GRUDNIA ===
+      const today = new Date()
+      let day = today.getMonth() === 11 ? today.getDate() : "x"
+      if (day < 1) day = 1
+      if (day > 24) day = 24
+
+      // === USTAWIAMY OBRAZKI ===
+      document.getElementById(
+        "front"
+      ).style.backgroundImage = `url('${folder}/front.jpg')`
+      document.getElementById(
+        "back"
+      ).style.backgroundImage = `url('${folder}/${day}.jpg')`
+
+      function flipCard() {
+        document.getElementById("photoCard").classList.toggle("flip")
+      }
+      // === Płatki śniegu ===
+      document.addEventListener("DOMContentLoaded", () => {
+        const numberOfFlakes = 50 // ilość płatków
+
+        for (let i = 0; i < numberOfFlakes; i++) {
+          const flake = document.createElement("div")
+          flake.classList.add("snowflake")
+
+          flake.style.left = Math.random() * 100 + "vw" // miejsce startu
+          flake.style.animationDuration = 4 + Math.random() * 6 + "s" // czas spadania
+          flake.style.animationDelay = Math.random() * 3 + "s" // opóźnienie
+          flake.style.opacity = 0.3 + Math.random() * 0.7 // przezroczystość
+          flake.style.fontSize = 10 + Math.random() * 20 + "px" // wielkość płatka
+
+          flake.textContent = "❄" // wygląd płatka
+          document.body.appendChild(flake) // dodajemy na stronę
+        }
+      })
+      // ustawiamy dzień na froncie
+      document.getElementById("dayNumber").textContent = day
+    </script>
+  </body>
+</html>

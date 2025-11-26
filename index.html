@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kalendarz Adwentowy – Wybór poziomu</title>
+    <style>
+      body {
+        background: #730000;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .container {
+        text-align: center;
+        display: flex;
+        flex-direction: column; /* elementy w kolumnie: nagłówek nad przyciskami */
+        align-items: center;
+        gap: 20px; /* odstęp między nagłówkiem a przyciskami */
+      }
+
+      .buttons {
+        display: flex; /* przyciski w wierszu */
+        gap: 20px; /* odstęp między przyciskami */
+      }
+
+      button {
+        width: 150px; /* wszystkie przyciski tej samej szerokości */
+        padding: 15px 0;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .podstawa {
+        background: #4caf50;
+        color: white;
+      }
+
+      .rozszerzenie {
+        background: #2196f3;
+        color: white;
+      }
+
+      h1 {
+        color: aliceblue;
+      }
+      .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        pointer-events: none; /* nie blokuje kliknięć */
+        user-select: none;
+        z-index: 99999; /* nad stroną, ale jej nie rusza */
+        animation-name: snowfall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes snowfall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Wybierz poziom</h1>
+      <div class="buttons">
+        <button class="podstawa" onclick="location.href='podstawa.html'">
+          Podstawa
+        </button>
+        <button
+          class="rozszerzenie"
+          onclick="location.href='rozszerzenie.html'"
+        >
+          Rozszerzenie
+        </button>
+      </div>
+    </div>
+    <script>
+      // === Płatki śniegu ===
+      document.addEventListener("DOMContentLoaded", () => {
+        const numberOfFlakes = 50 // ilość płatków
+
+        for (let i = 0; i < numberOfFlakes; i++) {
+          const flake = document.createElement("div")
+          flake.classList.add("snowflake")
+
+          flake.style.left = Math.random() * 100 + "vw" // miejsce startu
+          flake.style.animationDuration = 4 + Math.random() * 6 + "s" // czas spadania
+          flake.style.animationDelay = Math.random() * 3 + "s" // opóźnienie
+          flake.style.opacity = 0.3 + Math.random() * 0.7 // przezroczystość
+          flake.style.fontSize = 10 + Math.random() * 20 + "px" // wielkość płatka
+
+          flake.textContent = "❄" // wygląd płatka
+          document.body.appendChild(flake) // dodajemy na stronę
+        }
+      })
+    </script>
+  </body>
+</html>
