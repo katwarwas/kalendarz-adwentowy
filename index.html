@@ -8,6 +8,7 @@
         background: #730000;
         height: 100vh;
         margin: 0;
+        padding-top: 80px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -16,10 +17,6 @@
 
       .container {
         text-align: center;
-      }
-
-      h1 {
-        margin-bottom: 20px;
       }
 
       .container {
@@ -34,6 +31,33 @@
         display: flex; /* przyciski w wierszu */
         gap: 20px; /* odstęp między przyciskami */
       }
+      .header-title {
+        font-family: "Papyrus", "Comic Sans MS", Arial;
+        color: #fff9e6;
+        font-size: 8vw;
+        max-font-size: 40px;
+        text-shadow: 0 0 10px rgba(255, 220, 150, 0.7),
+          0 0 20px rgba(255, 150, 100, 0.4);
+        margin-bottom: 10px;
+      }
+      .topbar {
+        width: 100%;
+        background: #5c0000; /* ciemniejszy czerwony, pasuje do tła */
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        font-family: "Papyrus", Arial;
+        font-size: 4vw;
+        max-font-size: 20px;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        text-shadow: 0 0 10px rgba(255, 220, 150, 0.7),
+          0 0 20px rgba(255, 150, 100, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+      }
 
       button {
         width: auto; /* wszystkie przyciski tej samej szerokości */
@@ -42,24 +66,29 @@
         padding: 2vw 0;
         font-size: 4vw;
         max-font-size: 20px;
+        font-family: "Papyrus", "Comic Sans MS", Arial;
         border: none;
         border-radius: 10px;
         cursor: pointer;
       }
       .podstawa {
-        background: #4caf50;
+        background: #0b550e;
         color: white;
       }
 
       .rozszerzenie {
-        background: #2196f3;
+        background: #194365;
         color: white;
       }
 
       h1 {
-        color: aliceblue;
+        margin-bottom: 20px;
+        color: #fff9e6;
+        font-family: "Papyrus", "Comic Sans MS", Arial;
+        text-shadow: 0 0 10px rgba(255, 220, 150, 0.7),
+          0 0 20px rgba(255, 150, 100, 0.4);
         font-size: 8vw;
-        max-font-size: 40px;
+        max-font-size: 28px;
       }
       .snowflake {
         position: fixed;
@@ -82,6 +111,7 @@
   </head>
 
   <body>
+    <div class="topbar">Matematyczny Kalendarz Adwentowy</div>
     <div class="container">
       <h1>Wybierz poziom</h1>
       <div class="buttons">
