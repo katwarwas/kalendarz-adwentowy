@@ -11,22 +11,31 @@
       body {
         background: #730000;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+
         align-items: center;
         height: 100vh;
         margin: 0;
+
         font-family: Arial;
       }
-      
+
       .card {
-        width: 80vw; /* 90% szerokości ekranu */
+        width: min(80vw, 80vh);
         max-width: 900px;
-        min-width: 250px; /* minimalna szerokość */
-        aspect-ratio: 1 / 1; /* wysokość = szerokość (kwadrat) */
+        min-width: 250px;
+        height: auto;
+        margin-top: 20px;
+        aspect-ratio: 1 / 1;
         perspective: 1000px;
         cursor: pointer;
       }
-
+      .center {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .inner {
         width: 100%;
         height: 100%;
@@ -68,12 +77,25 @@
         position: fixed;
         top: -10px;
         color: white;
-        pointer-events: none; /* nie blokuje kliknięć */
+        pointer-events: none;
         user-select: none;
-        z-index: 99999; /* nad stroną, ale jej nie rusza */
+        z-index: 99999;
         animation-name: snowfall;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
+      }
+      header {
+        width: 100%;
+        background: #5c0000;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        font-family: "Papyrus", Arial;
+        font-size: 4vw;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        text-shadow: 0 0 10px rgba(255, 220, 150, 0.7),
+          0 0 20px rgba(255, 150, 100, 0.4);
       }
 
       @keyframes snowfall {
@@ -85,17 +107,21 @@
   </head>
 
   <body>
-    <div class="card" onclick="flipCard()">
-      <div class="inner" id="photoCard">
-        <div class="side front" id="front">
-          <div class="day-number" id="dayNumber"></div>
+    <header class="topbar" onclick="goHome()">
+      Matematyczny Kalendarz Adwentowy
+    </header>
+    <div class="center">
+      <div class="card" onclick="flipCard()">
+        <div class="inner" id="photoCard">
+          <div class="side front" id="front">
+            <div class="day-number" id="dayNumber"></div>
+          </div>
+          <div class="side back" id="back"></div>
         </div>
-        <div class="side back" id="back"></div>
       </div>
     </div>
 
     <script>
-      // === WYBIERAMY FOLDER Z POZIOMEM ===
       const folder = "rozszerzenie"
 
       // === USTALAMY DZIEŃ GRUDNIA ===
@@ -117,24 +143,28 @@
       }
       // === Płatki śniegu ===
       document.addEventListener("DOMContentLoaded", () => {
-        const numberOfFlakes = 50 // ilość płatków
+        const numberOfFlakes = 50
 
         for (let i = 0; i < numberOfFlakes; i++) {
           const flake = document.createElement("div")
           flake.classList.add("snowflake")
 
-          flake.style.left = Math.random() * 100 + "vw" // miejsce startu
-          flake.style.animationDuration = 4 + Math.random() * 6 + "s" // czas spadania
-          flake.style.animationDelay = Math.random() * 3 + "s" // opóźnienie
-          flake.style.opacity = 0.3 + Math.random() * 0.7 // przezroczystość
-          flake.style.fontSize = 10 + Math.random() * 20 + "px" // wielkość płatka
+          flake.style.left = Math.random() * 100 + "vw"
+          flake.style.animationDuration = 4 + Math.random() * 6 + "s"
+          flake.style.animationDelay = Math.random() * 3 + "s"
+          flake.style.opacity = 0.3 + Math.random() * 0.7
+          flake.style.fontSize = 10 + Math.random() * 20 + "px"
 
-          flake.textContent = "❄" // wygląd płatka
-          document.body.appendChild(flake) // dodajemy na stronę
+          flake.textContent = "❄"
+          document.body.appendChild(flake)
         }
       })
       // ustawiamy dzień na froncie
       document.getElementById("dayNumber").textContent = day
+
+      function goHome() {
+        window.location.href = "index.html"
+      }
     </script>
   </body>
 </html>
