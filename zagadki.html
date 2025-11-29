@@ -6,36 +6,99 @@
       rel="stylesheet"
     />
     <meta charset="UTF-8" />
-    <title>Kalendarz Adwentowy – Podstawa</title>
+    <title>Kalendarz Adwentowy – Zagadki</title>
     <style>
       body {
-        background: #730000;
-        display: flex;
-        flex-direction: column;
-
-        align-items: center;
-        height: 100vh;
+        background: radial-gradient(circle at center, #990000, #400000);
+        min-height: 100vh;
         margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Quicksand, sans-serif;
+        overflow-x: hidden;
+        color: #d2f1ff;
+        padding: clamp(1rem, 3vw, 2.5rem);
+        box-sizing: border-box;
+      }
+      @media (max-width: 900px) {
+        body {
+          align-items: stretch;
+        }
+      }
 
-        font-family: Arial;
+      h2 {
+        text-align: center;
+        font-family: "Papyrus", Arial;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .main-wrapper {
+        background: radial-gradient(circle at center, #99000027, #4000002e);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid #d2f1ff36;
+        border-radius: 20px;
+        padding: clamp(1.75rem, 4vw, 3rem);
+        margin: clamp(1rem, 4vw, 2.5rem) auto;
+        box-shadow: #00000069;
+        text-align: center;
+        width: 100%;
+        max-width: 900px;
+        min-height: min(720px, 85vh);
+        height: auto;
+        display: flex;
+        z-index: 2;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1rem, 2vw, 2rem);
+        view-transition-name: main-card;
+        animation: fade-in-up 0.8s ease-out forwards;
+      }
+      .topbar-badge {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translate(-50%);
+        background: radial-gradient(circle at center, #610000, #400000);
+
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-weight: 700;
+
+        font-size: 0.9rem;
+        box-shadow: 0 4px 10px #0000004d;
+        white-space: nowrap;
+        z-index: 20;
+      }
+      button {
+        background: radial-gradient(circle at center, #610000, #400000);
+
+        border: 1px solid #ffffff48;
+        border-radius: 40px;
+        color: rgb(255, 255, 255);
+
+        font-family: "Papyrus";
+        padding: 0px 30px;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        filter: brightness(1.15);
       }
 
       .card {
         width: min(80vw, 80vh);
-        max-width: 900px;
-        min-width: 250px;
+        max-width: 400px;
+        min-width: 150px;
         height: auto;
-        margin-top: 20px;
+        margin-top: 40px;
         aspect-ratio: 1 / 1;
         perspective: 1000px;
         cursor: pointer;
       }
-      .center {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+
       .inner {
         width: 100%;
         height: 100%;
@@ -55,7 +118,7 @@
         backface-visibility: hidden;
         background-size: cover;
         background-position: center;
-        border-radius: 20px;
+        border-radius: 40px;
       }
       .day-number {
         position: absolute;
@@ -79,23 +142,8 @@
         color: white;
         pointer-events: none;
         user-select: none;
-        z-index: 99999;
-        animation-name: snowfall;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
-      header {
-        width: 100%;
-        background: #5c0000;
-        color: white;
-        padding: 15px 0;
-        text-align: center;
-        font-family: "Papyrus", Arial;
-        font-size: 4vw;
-        font-weight: bold;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-        text-shadow: 0 0 10px rgba(255, 220, 150, 0.7),
-          0 0 20px rgba(255, 150, 100, 0.4);
+        z-index: 1;
+        animation: linear infinite snowfall;
       }
 
       @keyframes snowfall {
@@ -107,10 +155,9 @@
   </head>
 
   <body>
-    <header class="topbar" onclick="goHome()">
-      Matematyczny Kalendarz Adwentowy
-    </header>
-    <div class="center">
+    <div class="main-wrapper">
+      <div class="topbar-badge"><h2>Matematyczny Kalendarz Adwentowy</h2></div>
+
       <div class="card" onclick="flipCard()">
         <div class="inner" id="photoCard">
           <div class="side front" id="front">
@@ -119,6 +166,8 @@
           <div class="side back" id="back"></div>
         </div>
       </div>
+      <h2>Kliknij w kartę, aby zobaczyć zadanie</h2>
+      <button onclick="goHome()"><h2>POWRÓT</h2></button>
     </div>
 
     <script>
