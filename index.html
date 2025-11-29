@@ -2,6 +2,7 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalendarz Adwentowy – Wybór poziomu</title>
     <style>
       body {
@@ -34,29 +35,6 @@
         view-transition-name: main-card;
         animation: fade-in-up 0.8s ease-out forwards;
       }
-      /* .main-wrapper {
-        background: radial-gradient(circle at center, #99000027, #4000002e);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid #d2f1ff36;
-        border-radius: 20px;
-        padding: clamp(1.75rem, 4vw, 3rem);
-        margin: clamp(1rem, 4vw, 2.5rem) auto;
-        box-shadow: #00000069;
-        text-align: center;
-        width: 100%;
-        max-width: 900px;
-        min-height: min(720px, 85vh);
-        height: auto;
-        display: flex;
-        z-index: 2;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: clamp(1rem, 2vw, 2rem);
-        view-transition-name: main-card;
-        animation: fade-in-up 0.8s ease-out forwards;
-      } */
 
       .header-title {
         font-family: "Papyrus", "Comic Sans MS", Arial;
@@ -80,14 +58,37 @@
         justify-items: center;
       }
 
-      /* Na małych ekranach — tylko 1 przycisk w rzędzie */
+      /* Aby telefony nie robiły zoom-out */
+      @viewport {
+        width: device-width;
+      }
+
+      /* TELEFONY – jeden przycisk w rzędzie */
       @media (max-width: 700px) {
+        body {
+          padding: 1rem;
+          justify-content: flex-start; /* nie rozciąga w górę */
+        }
+
+        .main-wrapper {
+          margin-top: 2rem;
+          padding: 2rem 1rem;
+        }
+
         .buttons {
+          grid-template-columns: 1fr; /* jeden w linii */
+          gap: 15px;
           width: 100%;
-          max-width: 500px;
-          grid-template-columns: 1fr;
-          justify-content: center;
-          margin: 0 auto;
+        }
+
+        .bnt-level {
+          width: 100%;
+          min-height: 110px;
+          font-size: 1.3rem;
+        }
+
+        .bnt-icon {
+          font-size: 2.2rem;
         }
       }
       .bnt-level:hover {
