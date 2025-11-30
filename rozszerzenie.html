@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-   
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalendarz Adwentowy –  Rozszerzenie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalendarz Adwentowy – Rozszerzenie</title>
     <style>
       body {
         background: #400000;
@@ -20,46 +19,46 @@
         padding: clamp(1rem, 3vw, 2.5rem);
         box-sizing: border-box;
       }
-     
+
       @media (max-width: 700px) {
-  body {
-    padding: 1rem;
-    justify-content: flex-start;
-  }
+        body {
+          padding: 1rem;
+          justify-content: flex-start;
+        }
 
-  .main-wrapper {
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
-    min-height: auto;   /* to jest KLUCZ */
-  }
+        .main-wrapper {
+          padding: 1.5rem 1rem;
+          margin-top: 2rem;
+          min-height: auto; /* to jest KLUCZ */
+        }
 
-  .topbar-badge h2 {
-    font-size: 1.1rem;
-  }
+        .topbar-badge h2 {
+          font-size: 1.1rem;
+        }
 
-  h3 {
-    font-size: 1rem;
-  }
+        h3 {
+          font-size: 1rem;
+        }
 
-  .card {
-    width: 90vw;
-    max-width: 350px;
-    aspect-ratio: 1/1;
-  }
+        .card {
+          width: 90vw;
+          max-width: 350px;
+          aspect-ratio: 1/1;
+        }
 
-  .day-number {
-    font-size: 22vw;   /* skaluje się idealnie na każdym telefonie */
-  }
+        .day-number {
+          font-size: 22vw; /* skaluje się idealnie na każdym telefonie */
+        }
 
-  button h2 {
-    font-size: 0.9rem;
-  }
+        button h2 {
+          font-size: 0.9rem;
+        }
 
-  button {
-    padding: 12px 20px;
-    font-size: 1.2rem;
-  }
-}
+        button {
+          padding: 12px 20px;
+          font-size: 1.2rem;
+        }
+      }
 
       h3 {
         text-align: center;
@@ -155,7 +154,7 @@
         backface-visibility: hidden;
         background-size: cover;
         background-position: center;
-        border-radius: 40px;
+        border-radius: 38px;
       }
       .day-number {
         position: absolute;
@@ -193,7 +192,7 @@
 
   <body>
     <div class="main-wrapper">
-      <div class="topbar-badge"><h2>Matematyczny Kalendarz Adwentowy</h2></Matematyczny></div>
+      <div class="topbar-badge"><h2>Matematyczny Kalendarz Adwentowy</h2></div>
 
       <div class="card" onclick="flipCard()">
         <div class="inner" id="photoCard">
